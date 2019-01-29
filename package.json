@@ -1,0 +1,26 @@
+{
+  "name": "@denis.moroz/tl-settings",
+  "version": "0.0.1",
+  "description": "Settings that are saved in DB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "dependencies": {
+    "pg": "^7.4.1",
+    "redis": "^2.8.0",
+    "bluebird": "^3.5.3",
+    "sleep": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denismoroz/tl-settings.git"
+  },
+  "author": "Denis Moroz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denismoroz/tl-settings/issues"
+  },
+  "homepage": "https://github.com/denismoroz/tl-settings#readme"
+}
