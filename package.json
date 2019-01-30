@@ -4,13 +4,23 @@
   "description": "Settings that are saved in DB",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js"
   },
 
   "dependencies": {
+    "nodemon": "^1.18.9",
     "pg": "^7.4.1",
     "redis": "^2.8.0",
-    "sleep": "^6.0.0"
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "memory-cache": "^0.2.0",
+    "raven": "^2.6.4",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "staticify": "^3.0.0"
   },
   "repository": {
     "type": "git",
