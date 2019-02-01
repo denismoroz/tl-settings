@@ -1,9 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-import { getSettings } from "../settings";
-
-const settings = getSettings();
+const settings = require("../settings").getSettings()
 
 router.get('/', (req, res) => {
   res.render('settings')
@@ -49,18 +47,20 @@ router.get('/settings', async (req, res) => {
 
 router.put('/settings', async (req, res) => {
   const settings_data = req.body
-  console.log("UI: Received:", settings_data)
+  //console.log("UI: Received:", settings_data)
 
   let fields_to_clean_up = new Set(Object.keys(settings.db_value)) ;
 
-  console.log("field to clean up init:", fields_to_clean_up);
+  //console.log("field to clean up init:", fields_to_clean_up);
   for (const field in settings_data) {
     const s = settings_data[field];
-    await settings.save(s.name, s.value)
+
+    if (s.value != settings[field]) {
+      await settings.save(s.name, s.value)
+    }
     fields_to_clean_up.delete(s.name);
   }
-
-  console.log("field to clean up remaining:", fields_to_clean_up);
+  ///console.log("field to clean up remaining:", fields_to_clean_up);
 
   for (const field of fields_to_clean_up) {
     await settings.delete(field);

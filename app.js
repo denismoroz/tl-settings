@@ -4,33 +4,30 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const staticify = require('staticify')(path.join(__dirname, 'public'))
 
-import {initSettings, getSettings} from "./settings";
+const settings = require("./settings").getSettings()
 
-initSettings().then(() => {
-  const settings = getSettings();
+const settingsRoutes = require('./ui/index');
+const app = express()
 
-  const settingsRoutes = require('./ui/index');
+app.set('view engine', 'ejs')
+app.use(cookieParser())
 
-  const app = express()
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(staticify.middleware)
 
-  app.set('view engine', 'ejs')
-  app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
-  app.use(express.static(path.join(__dirname, 'public')))
-  app.use(staticify.middleware)
+app.use('/', settingsRoutes)
 
-  app.use(bodyParser.json())
-  app.use(bodyParser.urlencoded({ extended: true }))
-
-  app.use('/', settingsRoutes)
-
-  app.use(function (error, req, res, next) {
-    console.error(error.stack)
-    res.status(500).send({ error: error.message || error })
-  })
-
-  const port = settings.port;
-  app.listen(port, () => console.log(`Listening on port: ${port}`))
+app.use(function (error, req, res, next) {
+  console.error(error.stack)
+  res.status(500).send({ error: error.message || error })
 })
+
+const port = settings.port;
+
+app.listen(port, () => console.log(`Listening on port: ${port}`))
+
 
 

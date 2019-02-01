@@ -28,9 +28,7 @@ class Settings extends SettingsBase {
 }
 
 
-export async function initSettings() {
-  await Settings.storeSettings(Settings)
-}
+Settings.storeSettings(Settings)
 
 export function getSettings() {
   return Settings.getInstance();
