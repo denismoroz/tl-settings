@@ -49,7 +49,7 @@ router.put('/settings', async (req, res) => {
   const settings_data = req.body
   //console.log("UI: Received:", settings_data)
 
-  let fields_to_clean_up = new Set(Object.keys(settings.db_value)) ;
+  let fields_to_clean_up = new Set(Object.keys(settings._db_value)) ;
 
   //console.log("field to clean up init:", fields_to_clean_up);
   for (const field in settings_data) {

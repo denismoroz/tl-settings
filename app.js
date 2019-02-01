@@ -4,9 +4,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const staticify = require('staticify')(path.join(__dirname, 'public'))
 
-const settings = require("./settings").getSettings()
+import {registerSettings, getSettings } from "./settings";
 
-const settingsRoutes = require('./ui/index');
 const app = express()
 
 app.set('view engine', 'ejs')
@@ -17,17 +16,18 @@ app.use(staticify.middleware)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
-app.use('/', settingsRoutes)
-
 app.use(function (error, req, res, next) {
   console.error(error.stack)
   res.status(500).send({ error: error.message || error })
 })
 
-const port = settings.port;
+registerSettings().then(() => {
+  const settingsRoutes = require('./ui/index');
+  app.use('/', settingsRoutes)
 
-app.listen(port, () => console.log(`Listening on port: ${port}`))
+  const port = getSettings().port;
+  app.listen(port, () => console.log(`Listening on port: ${port}`))
+})
 
 
 

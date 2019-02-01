@@ -3,10 +3,6 @@ import {type, default_value, description, SettingsBase} from "./lib/base_setting
 
 
 class Settings extends SettingsBase {
-  constructor() {
-    super();
-    console.log("Settings are created!")
-  }
 
   @default_value("postgres://toptal:toptal@localhost:5432/tl_settings")
   @description("db connect url")
@@ -18,6 +14,7 @@ class Settings extends SettingsBase {
   redis_url;
 
   @default_value("settings_updates")
+  @description("Redis cannel for field updates")
   redis_channel;
 
   @default_value(process.env.PORT || 3000)
@@ -27,8 +24,9 @@ class Settings extends SettingsBase {
 
 }
 
-
-Settings.storeSettings(Settings)
+export async function registerSettings() {
+  await Settings.registerSettings(Settings)
+}
 
 export function getSettings() {
   return Settings.getInstance();

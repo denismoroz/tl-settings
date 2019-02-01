@@ -36,11 +36,12 @@
         settingsTable +=  "<td>" + setting.value + "</td>"
       }
       else {
-        settingsTable +=  `<td><input class='input-setting-value' type='${setting.type}'  data='${setting.name}' value='${setting.value}'></td>`;
+        settingsTable +=  `<td><input class='input-setting-value' type='${setting.type}'  data='${setting.name}' value='${setting.value}'>`;
 
         if (setting.db_value) {
-          settingsTable +=  `<td><button class="btn-delete" value='${setting.name}'>Delete</button></td>`;
+          settingsTable +=  `<button class="btn-delete" value='${setting.name}'>Delete</button>`;
         }
+        settingsTable += `</td>`
 
       }
       settingsTable +=  "<td>" + setting.description + "</td>";
