@@ -1,37 +1,51 @@
 (function () {
 
   state = "DISPLAY"
-  settings = {}
+  settings = []
 
   function isDisplay() {
     return state == "DISPLAY"
   }
 
   function readSettings() {
-    settings = {};
+    new_settings = {};
+
     $("tr.setting").each(function() {
       const $this = $(this);
-      const name = $this.find(".input-setting-name").val();
+      const name = $this.find(".input-setting-name").text();
       const value = $this.find(".input-setting-value").val();
-      settings[name] = {value}
+      let s = settings[name];
+      s.value = value;
+      new_settings[name] = s;
     });
+    settings = new_settings;
   }
 
   function renderSettings() {
     let settingsTable = "<table class='settings-table'>";
-    settingsTable += '<tr><th>Name</th> <th>Value</th></tr>'
+    settingsTable += '<tr><th>Name</th> <th>Value</th> <th>Description</th> <th>In DB</th> <th>Default Value</th></tr>'
 
-    for(let setting_name in settings) {
+    for(let field_name in settings) {
+      const setting = settings[field_name];
+
       settingsTable += "<tr class='setting'>"
+      settingsTable +=  "<td class='input-setting-name' value='${setting.name}'>" + setting.name  + "</td>";
+
+
       if (isDisplay()) {
-        settingsTable +=  "<td>" + setting_name  + "</td>"
-        settingsTable +=  "<td>" + settings[setting_name].value + "</td>"
+        settingsTable +=  "<td>" + setting.value + "</td>"
       }
       else {
-        settingsTable +=  `<td><input class='input-setting-name' type='text'  value='${setting_name}'></td>`
-        settingsTable +=  `<td><input class='input-setting-value' type='text'  value='${settings[setting_name].value}'></td>`
-        settingsTable +=  `<td><button class="btn-delete" value='${setting_name}'>Delete</button></td>`
+        settingsTable +=  `<td><input class='input-setting-value' type='${setting.type}'  data='${setting.name}' value='${setting.value}'></td>`;
+
+        if (setting.db_value) {
+          settingsTable +=  `<td><button class="btn-delete" value='${setting.name}'>Delete</button></td>`;
+        }
+
       }
+      settingsTable +=  "<td>" + setting.description + "</td>";
+      settingsTable +=  "<td>" + !!setting.db_value + "</td>";
+      settingsTable +=  "<td>" + setting.default_value + "</td>";
 
       settingsTable += "</tr>"
     }
@@ -48,13 +62,15 @@
     if (state == "EDIT") {
       content += "<br/>"
       content +=  '<button class="btn-save">Save</button>'
-      content +=  '<button class="btn-new">New</button>'
     }
 
     $("#settings").html(content)
 
     $(".btn-delete").click((e)=>{
-      delete settings[e.target.value];
+      const setting_name = e.target.value;
+      delete settings[setting_name];
+
+
       renderSettings();
     })
 
@@ -69,26 +85,6 @@
       saveSettings()
     })
 
-
-    function getUniqueName() {
-      let i = 0
-      const name_tpl = "new_name"
-      let name = name_tpl
-
-      while (name in settings) {
-        name = `${name_tpl}_${i}`
-        i += 1
-      }
-      return name
-    }
-
-    $(".btn-new").click((e)=>{
-      console.log(settings)
-
-      const name = getUniqueName()
-      settings[name] = {value: "new_value"}
-      renderSettings()
-    })
   }
 
   function getSettings() {

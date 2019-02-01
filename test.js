@@ -16,29 +16,55 @@ function description(_description) {
 
 
 function default_value(_default_value) {
-  return function (target, name, descriptor) {
+  return function decorator(target, name, descriptor) {
     target.addToMeta(name, {"default_value": _default_value});
 
     return  {
       enumerable: true,
+      configurable: true,
+      set: function (value) {
+        this['__'+property] = value;
+        console.log('set', value);
+      },
 
-      get: () => {
-        const db_record = target.get(name)
-        const meta = target.getMeta(name)
-        let obj = db_record ? db_record.value : meta.default_value
+      get: function() {
+        console.log("get", this)
+        const db_record = this.get(name)
 
-        if (!meta.type) {
-          meta.type = String
-        }
-
-        obj = new meta.type(obj);
-
-        obj["default_value"] = meta.default_value;
-        obj["description"] = meta.description;
-        return obj
+        return _default_value;
+        // const meta = this.getMeta(name)
+        // let obj = db_record ? db_record.value : meta.default_value
+        //
+        // if (!meta.type) {
+        //   meta.type = String
+        // }
+        //
+        // obj = new meta.type(obj);
+        //
+        // obj["default_value"] = meta.default_value;
+        // obj["description"] = meta.description;
+        // return obj
       },
     };
   }
+}
+
+function fake(fake_value) {
+  return function decorator(target, property, descriptor) {
+    let val = fake_value ;
+    return {
+      set: function (value) {
+        this['__'+property] = value;
+        console.log('set', value);
+      },
+      get: function() {
+        console.log('get', val);
+        return val;
+      },
+      enumerable: true,
+      configurable: true
+    };
+  };
 }
 
 class SettingsBase {
@@ -65,7 +91,7 @@ class SettingsBase {
   }
 
   get(name) {
-    // console.log("Base: get ", name)
+    console.log("Base: get ", name)
     const params = {"app_token": {value: "TOKEN FROM DB"}}
 
     return params[name];
@@ -80,32 +106,34 @@ class SettingsBase {
 class Settings extends SettingsBase {
 
   @default_value("DEFAULT_TOKEN")
-  @description("Super description")
-  @type(String)
+  // @description("Super description")
+  // @type(String)
+  //@fake("23")
   app_token;
 
-  @default_value("db://")
-  @description("db connect url")
-  db_connect_url;
-
-  @default_value("localhost:6379")
-  @description("Redis connection parameters")
-  @type(String)
-  redis_url;
-
-  @default_value(false)
-  @description("Debug mode")
-  @type(Boolean)
-  debug;
+  // @default_value("db://")
+  // @description("db connect url")
+  // db_connect_url;
+  //
+  // @default_value("localhost:6379")
+  // @description("Redis connection parameters")
+  // @type(String)
+  // redis_url;
+  //
+  // @default_value(false)
+  // @description("Debug mode")
+  // @type(Boolean)
+  // debug;
 
 }
 
 
 let s = new Settings();
+console.log(s)
 
-console.log(`app_token: ${s.app_token}, ${s.app_token.description}, ${s.app_token.default_value}`);
-console.log(`db_connect_url: ${s.db_connect_url}, ${s.db_connect_url.description}, ${s.db_connect_url.default_value}`);
-console.log(`redis_url: ${s.redis_url}, ${s.redis_url.description}, ${s.redis_url.default_value}`);
-console.log(`debug: ${s.debug}`);
-
+console.log(`app_token: ${s.app_token}`)
+  // , ${s.app_token.description}, ${s.app_token.default_value}`);
+// console.log(`db_connect_url: ${s.db_connect_url}, ${s.db_connect_url.description}, ${s.db_connect_url.default_value}`);
+// console.log(`redis_url: ${s.redis_url}, ${s.redis_url.description}, ${s.redis_url.default_value}`);
+// console.log(`debug: ${s.debug}`);
 

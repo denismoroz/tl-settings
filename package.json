@@ -4,7 +4,7 @@
   "description": "Settings that are saved in DB",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "nodemon --exec babel-node app.js",
     "poc": "nodemon --exec babel-node test.js"
   },
   "dependencies": {
