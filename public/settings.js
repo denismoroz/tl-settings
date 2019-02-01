@@ -36,7 +36,7 @@
         settingsTable +=  "<td>" + setting.value + "</td>"
       }
       else {
-        settingsTable +=  `<td><input class='input-setting-value' type='${setting.type}'  data='${setting.name}' value='${setting.value}'>`;
+        settingsTable +=  `<td><input class='input-setting-value' size="80" type='${setting.type}'  data='${setting.name}' value='${setting.value}'>`;
 
         if (setting.db_value) {
           settingsTable +=  `<button class="btn-delete" value='${setting.name}'>Delete</button>`;
