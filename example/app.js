@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const settings = require("./settings")
 const settings_ui = require("@denis.moroz/tl-settings-ui")
 
-
 const app = express()
 
 app.set('view engine', 'ejs')
