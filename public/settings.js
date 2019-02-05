@@ -22,8 +22,10 @@
   }
 
   function renderSettings() {
-    let settingsTable = "<table class='settings-table'>";
-    settingsTable += '<tr><th>Name</th> <th>Value</th> <th>Description</th> <th>In DB</th> <th>Default Value</th></tr>'
+    let settingsTable = '<table class="table table-striped settings-table">';
+    settingsTable += '<thead class="thead-dark">'
+    settingsTable += '<tr><th>Name</th> <th>Value</th> <th>Description</th> <th>In DB</th></tr>'
+    settingsTable +=  '</thead>'
 
     for(let field_name in settings) {
       const setting = settings[field_name];
@@ -31,22 +33,25 @@
       settingsTable += "<tr class='setting'>"
       settingsTable +=  "<td class='input-setting-name' value='${setting.name}'>" + setting.name  + "</td>";
 
+      settingsTable += "<td>"
 
       if (isDisplay()) {
-        settingsTable +=  "<td>" + setting.value + "</td>"
+        settingsTable +=  setting.value
       }
       else {
-        settingsTable +=  `<td><input class='input-setting-value' size="80" type='${setting.type}'  data='${setting.name}' value='${setting.value}'>`;
+        settingsTable +=  `<input class='input-setting-value'  type='${setting.type}'  data='${setting.name}' value='${setting.value}'>`;
 
         if (setting.db_value) {
-          settingsTable +=  `<button class="btn-delete" value='${setting.name}'>Delete</button>`;
+          settingsTable +=  `<button class="btn-primary btn-delete" value='${setting.name}'>Delete</button>`;
         }
-        settingsTable += `</td>`
 
       }
+      settingsTable += "<br/>"  + '<span class="default_value">' + "Default: " + setting.default_value + '</span>'
+
+      settingsTable += "</td>"
+
       settingsTable +=  "<td>" + setting.description + "</td>";
       settingsTable +=  "<td>" + !!setting.db_value + "</td>";
-      settingsTable +=  "<td>" + setting.default_value + "</td>";
 
       settingsTable += "</tr>"
     }
@@ -57,12 +62,12 @@
 
     if (state == "DISPLAY") {
       content += "<br/>"
-      content +=  '<button class="btn-edit">Edit</button>'
+      content +=  '<button class="btn-primary btn-edit">Edit</button>'
     }
 
     if (state == "EDIT") {
       content += "<br/>"
-      content +=  '<button class="btn-save">Save</button>'
+      content +=  '<button class="btn-primary btn-save">Save</button>'
     }
 
     $("#settings").html(content)
@@ -105,8 +110,7 @@
         body: JSON.stringify(settings)
       },).then((response)=> {
       response.json().then((data)=> {
-        settings = data
-        renderSettings()
+        getSettings()
       })
     })
   }

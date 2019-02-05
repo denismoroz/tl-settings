@@ -22,6 +22,11 @@ class Settings extends SettingsBase {
   @type(Number)
   port;
 
+
+  @default_value("Hello World!")
+  @description("Hello message for starting application.")
+  hello_message;
+
 }
 
 export async function registerSettings() {

@@ -25,15 +25,15 @@ function _pack_type(t) {
 
 function settings_to_json() {
   let settings_json = {};
-
-  for (const field in settings.default_value) {
+  for (let field of settings.fields) {
     settings_json[field] = {
       name: field,
+      value: settings[field],
+      db_value: settings.db_value[field],
+
       default_value: settings.default_value[field],
       description: settings.description[field],
-      value: settings[field],
       type: _pack_type(settings.type[field]),
-      db_value: settings.db_value[field],
     }
   }
   return settings_json
@@ -54,10 +54,7 @@ router.put('/settings', async (req, res) => {
   //console.log("field to clean up init:", fields_to_clean_up);
   for (const field in settings_data) {
     const s = settings_data[field];
-
-    if (s.value != settings[field]) {
-      await settings.save(s.name, s.value)
-    }
+    await settings.save(s.name, s.value)
     fields_to_clean_up.delete(s.name);
   }
   ///console.log("field to clean up remaining:", fields_to_clean_up);
