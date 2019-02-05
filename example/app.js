@@ -1,15 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
 
-import {registerSettings, getSettings } from "./settings";
+const settings = require("./settings")
 const settings_ui = require("@denis.moroz/tl-settings-ui")
+
+
 const app = express()
 
 app.set('view engine', 'ejs')
-
-app.use(cookieParser())
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -18,10 +16,11 @@ app.use(function (error, req, res, next) {
   res.status(500).send({ error: error.message || error })
 })
 
-registerSettings().then(() => {
-  settings_ui.register(app, "/", getSettings())
+settings.registerSettings().then(() => {
+  const app_settings = settings.getSettings()
+  settings_ui.register(app, "/", app_settings)
 
-  const port = getSettings().port;
+  const port = app_settings.port;
   app.listen(port, () => console.log(`Listening on port: ${port}`))
 })
 
