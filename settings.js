@@ -1,5 +1,7 @@
 
-import {type, default_value, description, SettingsBase} from "./lib/base_settings";
+import {type, default_value, description, SettingsBase} from "./core/settings_base";
+
+
 
 
 class Settings extends SettingsBase {

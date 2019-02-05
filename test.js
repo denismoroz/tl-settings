@@ -2,14 +2,14 @@
 
 function type(_type) {
   return function decorator(target, name, descriptor) {
-    target.addToMeta(name, {"type": _type})
+    target._addToMeta(name, {"type": _type})
     return descriptor;
   }
 }
 
 function description(_description) {
   return function decorator(target, name, descriptor) {
-    target.addToMeta(name, {"description": _description});
+    target._addToMeta(name, {"description": _description});
     return descriptor;
   }
 }
@@ -17,7 +17,7 @@ function description(_description) {
 
 function default_value(_default_value) {
   return function decorator(target, name, descriptor) {
-    target.addToMeta(name, {"default_value": _default_value});
+    target._addToMeta(name, {"default_value": _default_value});
 
     return  {
       enumerable: true,
@@ -32,7 +32,7 @@ function default_value(_default_value) {
         const db_record = this.get(name)
 
         return _default_value;
-        // const meta = this.getMeta(name)
+        // const meta = this._getMeta(name)
         // let obj = db_record ? db_record.value : meta.default_value
         //
         // if (!meta.type) {
