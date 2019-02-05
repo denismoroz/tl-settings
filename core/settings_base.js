@@ -1,6 +1,3 @@
-import { Storage } from "../db/db"
-import { PubSub } from "../pubsub/pubsub"
-
 
 function type(_type) {
   return function decorator(target, name, descriptor) {
@@ -82,7 +79,7 @@ class SettingsBase {
   async delete(name) {
     console.log("Base: delete: ", name)
     await this._db.delete(name);
-    this._pub.publish(this.redis_channel, name)
+    this._pubsub.notify(name)
   }
 
   async init(dbClass, pubSubClass) {
@@ -91,22 +88,12 @@ class SettingsBase {
   }
 
   async _setupDb(dbClass) {
-
-    if (!dbClass) {
-      dbClass = Storage
-    }
-
     this._db = new dbClass;
     await this._db.init(this);
     this._db_value = (await this._db.getAll()).reduce((acc, e) => {acc[e.name] = e.value; return acc;}, {});
   }
 
   _setupPubSub(pubSubClass) {
-
-    if (!pubSubClass) {
-      pubSubClass = PubSub
-    }
-
     this._pubsub = new pubSubClass();
     this._pubsub.init(this,
       async (channel, message) => {
@@ -179,5 +166,4 @@ class SettingsBase {
 
 }
 
-
-export {type, description, default_value, SettingsBase}
+module.exports = {type, description, default_value, SettingsBase}

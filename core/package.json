@@ -1,0 +1,12 @@
+{
+  "name": "@denis.moroz/tl-settings-core",
+  "version": "0.0.6",
+  "description": "Core settings management functionality",
+  "main": "settings_base.js",
+
+  "scripts": {
+  },
+
+  "author": "Denis Moroz",
+  "license": "MIT"
+}

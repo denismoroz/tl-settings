@@ -1,8 +1,7 @@
 
-import {type, default_value, description, SettingsBase} from "./core/settings_base";
-
-
-
+import { type, default_value, description, SettingsBase } from "@denis.moroz/tl-settings-core";
+import { Storage } from "@denis.moroz/tl-settings-db";
+import { PubSub } from "@denis.moroz/tl-settings-pubsub";
 
 class Settings extends SettingsBase {
 
@@ -32,9 +31,10 @@ class Settings extends SettingsBase {
 }
 
 export async function registerSettings() {
-  await Settings.registerSettings(Settings)
+  await Settings.registerSettings(Settings, Storage, PubSub)
 }
 
 export function getSettings() {
   return Settings.getInstance();
 }
+

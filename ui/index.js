@@ -1,69 +1,10 @@
 const express = require('express')
-const router = express.Router()
+const ui = require('./ui');
+const path = require('path')
 
-const settings = require("../settings").getSettings()
-
-router.get('/', (req, res) => {
-  res.render('settings')
-});
-
-
-function _pack_type(t) {
-
-  if (!t || t == String) return "text";
-
-  if (t == Number) {
-    return "number"
-  }
-
-  if (t == Boolean) {
-    return "checkbox"
-  }
-
-  return "text"
+function register(app, settings_route, settings) {
+  app.use(express.static(path.join(__dirname, 'public')))
+  app.use(settings_route, ui.buildSettingsUI(settings))
 }
 
-function settings_to_json() {
-  let settings_json = {};
-  for (let field of settings.fields) {
-    settings_json[field] = {
-      name: field,
-      value: settings[field],
-      db_value: settings.db_value[field],
-
-      default_value: settings.default_value[field],
-      description: settings.description[field],
-      type: _pack_type(settings.type[field]),
-    }
-  }
-  return settings_json
-}
-
-router.get('/settings', async (req, res) => {
-  const settings_json = settings_to_json()
-  console.log("UI: Send setting: ", settings_json);
-  res.json(settings_json);
-});
-
-router.put('/settings', async (req, res) => {
-  const settings_data = req.body
-  //console.log("UI: Received:", settings_data)
-
-  let fields_to_clean_up = new Set(Object.keys(settings._db_value)) ;
-
-  //console.log("field to clean up init:", fields_to_clean_up);
-  for (const field in settings_data) {
-    const s = settings_data[field];
-    await settings.save(s.name, s.value)
-    fields_to_clean_up.delete(s.name);
-  }
-  ///console.log("field to clean up remaining:", fields_to_clean_up);
-
-  for (const field of fields_to_clean_up) {
-    await settings.delete(field);
-  }
-  res.json(settings_to_json())
-});
-
-module.exports = router;
-
+module.exports = { register }

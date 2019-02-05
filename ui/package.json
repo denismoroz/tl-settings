@@ -1,0 +1,14 @@
+{
+  "name": "@denis.moroz/tl-settings-ui",
+  "version": "0.0.5",
+  "description": "Express UI interface to modify settings",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Denis Moroz",
+  "license": "MIT",
+
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}

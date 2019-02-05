@@ -1,0 +1,13 @@
+{
+  "name": "@denis.moroz/tl-settings-pubsub",
+  "version": "0.0.3",
+  "description": "Pub sub engine to sync settings changes",
+  "main": "pubsub.js",
+  "scripts": {
+  },
+  "author": "Denis Moroz",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^2.8.0"
+  }
+}

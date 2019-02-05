@@ -48,4 +48,4 @@ class Storage {
   }
 }
 
-export { Storage }
+module.exports = { Storage }
