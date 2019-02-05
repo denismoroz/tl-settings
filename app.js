@@ -30,8 +30,6 @@ registerSettings().then(() => {
 
   const port = getSettings().port;
 
-
-
   app.listen(port, () => console.log(`Listening on port: ${port}`))
 })
 
