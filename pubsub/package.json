@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-pubsub",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Pub sub engine to sync settings changes",
   "main": "pubsub.js",
   "scripts": {

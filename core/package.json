@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Core settings management functionality",
   "main": "settings_base.js",
 

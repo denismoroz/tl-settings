@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-ui",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Express UI interface to modify settings",
   "main": "index.js",
   "scripts": {
