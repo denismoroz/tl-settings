@@ -15,6 +15,7 @@ app.use(function (error, req, res, next) {
 })
 
 settings.registerSettings().then(() => {
+
   const settings_ui = require("@denis.moroz/tl-settings-ui")
   settings_ui.register(app, "/")
 
