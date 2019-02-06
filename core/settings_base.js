@@ -159,11 +159,11 @@ class SettingsBase {
       global[SETTINGS_KEY] = settings
     }
   }
-
-  static getInstance() {
-    return global[SETTINGS_KEY];
-  }
-
 }
 
-module.exports = {type, description, default_value, SettingsBase}
+
+function getSettingsInstance() {
+  return global[SETTINGS_KEY];
+}
+
+module.exports = {type, description, default_value, SettingsBase, getSettingsInstance}

@@ -1,12 +1,13 @@
 {
   "name": "@denis.moroz/tl-settings-db",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "DB abstraction for settings package",
   "main": "db.js",
   "scripts": {
   },
   "author": "Denis Moroz",
   "license": "MIT",
+  "homepage": "https://github.com/denismoroz/tl-settings",
 
   "dependencies": {
     "pg": "^7.4.1"

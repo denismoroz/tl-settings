@@ -676,30 +676,31 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@denis.moroz/tl-settings-core@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-core/-/tl-settings-core-0.0.7.tgz#8540d9ddb8e56b5115b42709b815ab7466a6d91f"
-  integrity sha512-DGjKAhgajilMFISCM4lv8jpdZ3AK8g1CPpyPONHr5RtqybFNpkDRW0ZUcSoACXdbrXgRfSaMve+0cetXS5MmfA==
+"@denis.moroz/tl-settings-core@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-core/-/tl-settings-core-0.0.11.tgz#032e827f52614007a7cc3072aebfa1cd727a97c4"
+  integrity sha512-KAmr/oPLcQfy+y4DrDrofDeBOKvunbV4XBfQ4/Psi/nAZa/m6S55bCCA90luZv0WEJkhl1RuG/vtOwdtE3XFWQ==
 
-"@denis.moroz/tl-settings-db@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-db/-/tl-settings-db-0.0.3.tgz#89ab2cafe1f8528c91bbcfea6a746dd742cdbc65"
-  integrity sha512-tBLjMqPIIAqbLLMZADKRVhE/v3vtF3Xh09vn21tRzBdoYalu/qrALRhT76KSe1ikNiZOFRY0mNOgQWjD83B/EA==
+"@denis.moroz/tl-settings-db@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-db/-/tl-settings-db-0.0.4.tgz#6646f6b78c2c5efa5658352fc2b0cb1a123f9c22"
+  integrity sha512-zxikc2icWVVY9tUEWaZHGSGm2Drkfi5iO7IxN8iIkReYoCMIBMRLQk5F+E8RTobxUIgR+VaIjAHzlEEoHIzJGQ==
   dependencies:
     pg "^7.4.1"
 
-"@denis.moroz/tl-settings-pubsub@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-pubsub/-/tl-settings-pubsub-0.0.4.tgz#7387455716c2f69ac6c0cbfa163f6a493682a0dc"
-  integrity sha512-jnlnSri5XlsfOQgVW0Mf/k6KkdLzZ+KUC8xuQF45DKa/lConIgL1NQbjoNzxXpjJg/PW5E99mBkJY2n4Q1EBCQ==
+"@denis.moroz/tl-settings-pubsub@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-pubsub/-/tl-settings-pubsub-0.0.5.tgz#061119af9e87301633465d0f74d8376ee7994e59"
+  integrity sha512-O2xJl46l02ovko0TqrRBe2wIQql3Ce6R+5mb0gkb/TjfR4iaBo6PAgPqqnZ7ChduIW7iXoy1rqlmb4EzyOEcOQ==
   dependencies:
     redis "^2.8.0"
 
-"@denis.moroz/tl-settings-ui@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-ui/-/tl-settings-ui-0.0.6.tgz#beff72084c938dbc965a5554f6ffdca1c2bf7f9b"
-  integrity sha512-xfCkPqa+QSTISDcVGc/DJk/ayVdpOUoUl3uMQxrOhOWNnclj5xgYABmB5mT0jeA4VpdmxqLDi2LyKKYDWW5cKg==
+"@denis.moroz/tl-settings-ui@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-ui/-/tl-settings-ui-0.0.14.tgz#5cc9e814873287a3662efa439f68afb821dd22b5"
+  integrity sha512-ysUY2mh//ILhRkW6ifqxbdXNVkpdyZcavTJEC4RyD0tJy68IRLO0zZ6teKJBDg+6dQ+Uq3xzDfQGn74c9Ow1LQ==
   dependencies:
+    "@denis.moroz/tl-settings-core" "^0.0.11"
     express "^4.16.3"
 
 abbrev@1:

@@ -2,7 +2,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const settings = require("./settings")
-const settings_ui = require("@denis.moroz/tl-settings-ui")
 
 const app = express()
 
@@ -16,9 +15,10 @@ app.use(function (error, req, res, next) {
 })
 
 settings.registerSettings().then(() => {
-  const app_settings = settings.getSettings()
-  settings_ui.register(app, "/", app_settings)
+  const settings_ui = require("@denis.moroz/tl-settings-ui")
+  settings_ui.register(app, "/")
 
+  const app_settings = settings.getSettingsInstance()
   const port = app_settings.port;
   app.listen(port, () => console.log(`Listening on port: ${port}`))
 })
