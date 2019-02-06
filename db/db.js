@@ -1,5 +1,6 @@
 const Pool = require ('pg').Pool
 
+// Postgresql backend Example.
 class Storage {
   async _query() {
     const client = await this.pool.connect()
@@ -10,6 +11,9 @@ class Storage {
     }
   }
 
+  // Connects to db and check that settings table exists.
+  // It receives just created settings object to know what pg server to connect.
+  // That makes db_connect_url setting mondatory to be used with this backend
   async init(settings) {
     const db_url = settings.db_connect_url;
     console.log("Storage: Connect to :", db_url);
@@ -18,6 +22,7 @@ class Storage {
     return await this._query(createTable)
   }
 
+  // Selects value of specific setting form the database.
   async get(name) {
     const query = `SELECT tl_settings.value FROM tl_settings  WHERE tl_settings.name=$1;`;
     const r = await this._query(query, [name]);
@@ -25,7 +30,7 @@ class Storage {
     console.log("Storage: Read from db:  ", name, record);
     return record;
   }
-
+  // Load all values for a database
   async getAll() {
     const query = `SELECT tl_settings.name, tl_settings.value FROM tl_settings;`;
     const r = await this._query(query)
