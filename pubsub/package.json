@@ -1,11 +1,10 @@
 {
   "name": "@denis.moroz/tl-settings-pubsub",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Pub sub engine to sync settings changes",
   "main": "pubsub.js",
-  "homepage": "https://github.com/denismoroz/tl-settings",
-  "scripts": {
-  },
+  "homepage": "https://github.com/denismoroz/tl-settings#readme",
+  "keywords": ["application settings", "settings in DB", "refresh application settings"],
   "author": "Denis Moroz",
   "license": "MIT",
   "dependencies": {
