@@ -35,7 +35,7 @@
 
       settingsTable += "<td>"
 
-      if (isDisplay()) {
+      if (isDisplay() || setting.readonly) {
         settingsTable +=  setting.value
       }
       else {

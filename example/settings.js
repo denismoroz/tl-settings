@@ -1,5 +1,5 @@
 
-import { type, default_value, description, SettingsBase, getSettingsInstance} from "@denis.moroz/tl-settings-core";
+import { type, default_value, description, readonly, SettingsBase, getSettingsInstance} from "@denis.moroz/tl-settings-core";
 import { Storage } from "@denis.moroz/tl-settings-db";
 import { PubSub } from "@denis.moroz/tl-settings-pubsub";
 
@@ -10,12 +10,13 @@ class Settings extends SettingsBase {
   db_connect_url;
 
   @default_value("settings_updates")
-  @description("Redis cannel for field updates")
+  @description("Redis channel for field updates")
   redis_channel;
 
   @default_value(process.env.PORT || 3000)
   @description("Port where express server will run")
   @type(Number)
+  @readonly
   port;
 
   @default_value("Hello World!")

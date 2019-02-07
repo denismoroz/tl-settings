@@ -676,10 +676,15 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@denis.moroz/tl-settings-core@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-core/-/tl-settings-core-0.0.15.tgz#11919db2d82345d8fecffc4a46f20a6cfb9ad940"
-  integrity sha512-QTTzKY6BqQCoe9un0iqQP9xsl0/+jXsZgQBOB/vK8qajTkVuQNioGWk6ZnCmZANoFpAy7r4R86fG1pC3//Jhhw==
+"@denis.moroz/tl-settings-core@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-core/-/tl-settings-core-0.0.18.tgz#b8e54f97f6c145730da85cdfa3eb052f0dd2ed30"
+  integrity sha512-YOmIFL8G9Pl81Gj3cjDNkCIMNlCB54/xoVEyDuMfiSE7gsGt+iy/9O4FZPklcOB9iGowcZDt2h6H9pBNr+3R2Q==
+
+"@denis.moroz/tl-settings-core@^0.0.19":
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-core/-/tl-settings-core-0.0.19.tgz#69982c6eadc1e54b887aebd630595184f8547efb"
+  integrity sha512-5s2EB29tSvDV2qIdxUscVZ45d3EOBeQlWLGHNqgU3fjO1U0XXNHaZ+By3cEtpTP3ZzghLBar0j6ndjFJvp905w==
 
 "@denis.moroz/tl-settings-db@^0.0.6":
   version "0.0.6"
@@ -695,12 +700,12 @@
   dependencies:
     redis "^2.8.0"
 
-"@denis.moroz/tl-settings-ui@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-ui/-/tl-settings-ui-0.0.16.tgz#38c1f65d58171c3e5f345349dcb3983c5f84cfd3"
-  integrity sha512-RBOIjzQZfMUA9ahIKX+87+ph84LMShW9LdH//q1b9q/IHCteuK3cSmery4o6rYbhCb71o7GVkbDOdZdBtDSpAg==
+"@denis.moroz/tl-settings-ui@^0.0.21":
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-ui/-/tl-settings-ui-0.0.21.tgz#a4f77c5afabdeb41bfc648d78e43ccd2003047d5"
+  integrity sha512-mJDwEZYNpNjJrvY5GH4HUlhb3/uBXp9D91uiDY/f1SjpYrjIxkU6GC8qfntjEtvCGcovKxjgbUiZbVZ9ee8HQg==
   dependencies:
-    "@denis.moroz/tl-settings-core" "^0.0.15"
+    "@denis.moroz/tl-settings-core" "^0.0.18"
     express "^4.16.3"
 
 abbrev@1:

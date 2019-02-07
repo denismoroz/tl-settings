@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-ui",
-  "version": "0.0.16",
+  "version": "0.0.21",
   "description": "Express UI interface to modify settings",
   "main": "index.js",
   "keywords": ["application settings", "settings in DB", "refresh application settings"],
@@ -10,6 +10,6 @@
 
   "dependencies": {
     "express": "^4.16.3",
-    "@denis.moroz/tl-settings-core": "^0.0.15"
+    "@denis.moroz/tl-settings-core": "^0.0.19"
   }
 }

@@ -6,6 +6,7 @@ function type(_type) {
     return descriptor;
   }
 }
+
 // Decorator to provide a description for setting.
 function description(_description) {
   return function decorator(target, name, descriptor) {
@@ -13,6 +14,14 @@ function description(_description) {
     return descriptor;
   }
 }
+
+// Decorator to ignore settings saving to db.
+
+function readonly(target, name, descriptor) {
+  target._addToMeta(name, {"readonly": true});
+  return descriptor;
+}
+
 
 // Decorator to provide a default_value for setting.
 // It saves default value to meta object and updates a setting description.
@@ -71,6 +80,11 @@ class SettingsBase {
     return this._type;
   }
 
+  get readonly() {
+    return this._readonly;
+  }
+
+
   // Consult memory cache and return settings from the db.
   get(name) {
     console.log("Get DBL value", name, this._db_value, this);
@@ -79,9 +93,11 @@ class SettingsBase {
 
   // Save a new value for a setting.
   async save(name, value) {
-    console.log("Base: save: ", name, value)
-    await this._db.update(name, value);
-    this._pubsub.notify(name)
+    if (!readonly[name]) {
+      console.log("Base: save: ", name, value)
+      await this._db.update(name, value);
+      this._pubsub.notify(name)
+    }
   }
 
   // Delete a setting from database.
@@ -114,7 +130,7 @@ class SettingsBase {
       function(err){
         console.log('Error in pubsub:', err)
       });
-   }
+  }
 
   async _refreshValue(name) {
     const value = await this._db.get(name)
@@ -137,6 +153,7 @@ class SettingsBase {
       this._description = {}
       this._default_value = {}
       this._type = {}
+      this._readonly = {}
     }
 
     if ("description" in data) {
@@ -147,6 +164,9 @@ class SettingsBase {
     }
     if ("type" in data) {
       this._type[name] = data["type"]
+    }
+    if ("readonly" in data) {
+      this._readonly[name] = data["readonly"]
     }
 
     if (name in this._meta) {
@@ -175,9 +195,9 @@ class SettingsBase {
   }
 }
 
-// Retrivers settings object singleton.
+// Returns settings object singleton.
 function getSettingsInstance() {
   return global[SETTINGS_KEY];
 }
 
-module.exports = {type, description, default_value, SettingsBase, getSettingsInstance}
+module.exports = {type, description, default_value, readonly, SettingsBase, getSettingsInstance}
