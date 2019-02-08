@@ -693,11 +693,12 @@
   dependencies:
     pg "^7.4.1"
 
-"@denis.moroz/tl-settings-pubsub@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-pubsub/-/tl-settings-pubsub-0.0.7.tgz#ab34ca5393ac5bad7835f7da582b0eeed748818a"
-  integrity sha512-3I8sDGl1ZC6S3bjjC8F8eQ+ysDtwGvIZ7UgEL6zZb1JcNz37gCBg/GA82HTuAdzXHyDE3Ee7mfFG/7yEvoWvRQ==
+"@denis.moroz/tl-settings-pubsub@latest":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@denis.moroz/tl-settings-pubsub/-/tl-settings-pubsub-0.0.10.tgz#1fc099aa11baeec9f887d11fa7489c919f4421f8"
+  integrity sha512-9PeJzw7igGSQdhAS+pfoUxkHjs0dSt8ralYznZlzDlH5DpkDjMCaSYsLiF39g+KtBtXDMPvOh+24tN61lw23Bg==
   dependencies:
+    events "^3.0.0"
     redis "^2.8.0"
 
 "@denis.moroz/tl-settings-ui@^0.0.21":
@@ -1296,6 +1297,11 @@ etag@~1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+
+events@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/events/-/events-3.0.0.tgz#9a0a0dfaf62893d92b875b8f2698ca4114973e88"
+  integrity sha512-Dc381HFWJzEOhQ+d8pkNon++bk9h6cdAoAj4iE6Q4y6xgTzySWXlKn05/TVNpjnfRqi/X0EpJEJohPjNI3zpVA==
 
 execa@^0.7.0:
   version "0.7.0"

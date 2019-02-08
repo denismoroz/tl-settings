@@ -1,7 +1,7 @@
 
 import { type, default_value, description, readonly, SettingsBase, getSettingsInstance} from "@denis.moroz/tl-settings-core";
 import { Storage } from "@denis.moroz/tl-settings-db";
-import { PubSub } from "@denis.moroz/tl-settings-pubsub";
+import { PubSubRedis, PubSubEventsEmitter } from "@denis.moroz/tl-settings-pubsub";
 
 class Settings extends SettingsBase {
 
@@ -11,7 +11,7 @@ class Settings extends SettingsBase {
 
   @default_value("settings_updates")
   @description("Redis channel for field updates")
-  redis_channel;
+  settings_fields_update_channel;
 
   @default_value(process.env.PORT || 3000)
   @description("Port where express server will run")
@@ -26,7 +26,7 @@ class Settings extends SettingsBase {
 }
 
 async function registerSettings() {
-  await SettingsBase.registerSettings(Settings, Storage, PubSub)
+  await SettingsBase.registerSettings(Settings, Storage, PubSubRedis)
 }
 
 module.exports = {registerSettings , getSettingsInstance}

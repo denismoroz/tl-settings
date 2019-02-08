@@ -20,7 +20,7 @@
 
     "@denis.moroz/tl-settings-core": "^0.0.19",
     "@denis.moroz/tl-settings-db": "^0.0.6",
-    "@denis.moroz/tl-settings-pubsub": "^0.0.7",
+    "@denis.moroz/tl-settings-pubsub": "latest",
     "@denis.moroz/tl-settings-ui": "^0.0.21",
 
     "nodemon": "^1.18.9",
