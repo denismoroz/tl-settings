@@ -94,7 +94,7 @@
   }
 
   function getSettings() {
-    fetch("/settings").then((response)=> {
+    fetch(ui_settings_url + "/settings").then((response)=> {
       response.json().then((data) => {
         settings = data
         renderSettings()
@@ -103,7 +103,7 @@
   }
 
   function saveSettings() {
-    fetch("/settings",
+    fetch(ui_settings_url + "/settings",
       {
         method: "PUT",
         headers: { "Content-Type": "application/json",},

@@ -22,7 +22,7 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   const tpl = path.join(__dirname, '../views/settings')
-  res.render(tpl)
+  res.render(tpl, {ui_settings_url: settings.ui_settings_url})
 });
 
 
