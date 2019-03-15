@@ -7,6 +7,7 @@ class Settings extends SettingsBase {
 
   @default_value("postgres://toptal:toptal@localhost:5432/tl_settings")
   @description("db connect url")
+  @readonly
   db_connect_url;
 
   @default_value("settings_updates")
@@ -23,10 +24,13 @@ class Settings extends SettingsBase {
   @description("Hello message for starting application.")
   hello_message;
 
+  @default_value("/settings")
+  @description("Setings UI url")
+  ui_settings_url;
 }
 
 async function registerSettings() {
-  await SettingsBase.registerSettings(Settings, Storage, PubSubRedis)
+  await SettingsBase.registerSettings(Settings, Storage, PubSubEventsEmitter)
 }
 
 module.exports = {registerSettings , getSettingsInstance}
