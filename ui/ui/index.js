@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const core = require('@denis.moroz/tl-settings-core')
+
 const settings = core.getSettingsInstance()
 
 function _pack_type(t) {
@@ -17,57 +18,44 @@ function _pack_type(t) {
   return "text"
 }
 
-
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  const tpl = path.join(__dirname, '../views/settings')
-  res.render(tpl, {ui_settings_url: settings.ui_settings_url})
-});
-
-
-function settings_to_json() {
-
-  let settings_json = {};
+function settings_list() {
+  let result = []
   for (let field of settings.fields) {
-    settings_json[field] = {
+    const s = {
       name: field,
       value: settings[field],
-      db_value: settings.db_value[field],
-      default_value: settings.default_value[field],
+      db_value: settings.dbValue[field],
+      default_value: settings.defaultValue[field],
       description: settings.description[field],
       type: _pack_type(settings.type[field]),
       readonly: !!settings.readonly[field]
     }
+    result.push(s)
   }
-  return settings_json
+  return result
 }
 
-router.get('/settings', async (req, res) => {
-  const settings_json = settings_to_json()
-  //console.log("UI: Send setting: ", settings_json);
-  res.json(settings_json);
+router.get('/', (req, res) => {
+  const tpl = path.join(__dirname, '../views/settings')
+  res.render(tpl, {settings: settings_list()})
 });
 
-router.put('/settings', async (req, res) => {
+
+router.put('/', async (req, res) => {
   const settings_data = req.body
+  //console.log("tl-settings: ui: save ", settings_data)
+  await settings.save(settings_data.name, settings_data.value)
+  res.sendStatus(200)
+})
 
-  let fields_to_clean_up = new Set(Object.keys(settings._db_value)) ;
-  for (const field in settings_data) {
-    const s = settings_data[field];
-
-    if (s.value != settings.db_value[field]) {
-      await settings.save(s.name, s.value)
-    }
-    fields_to_clean_up.delete(s.name);
-  }
-
-  for (const field of fields_to_clean_up) {
-    await settings.delete(field);
-  }
-  res.json(settings_to_json())
-});
-
+router.delete('/', async (req, res) => {
+  const settings_data = req.body
+  //console.log("tl-settings: ui: delete ", settings_data)
+  await settings.delete(settings_data.name)
+  res.sendStatus(200)
+})
 
 
 module.exports = router;

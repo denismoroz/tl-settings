@@ -15,7 +15,7 @@ class Storage {
   // It receives just created settings object to know what pg server to connect.
   // That makes db_connect_url setting mondatory to be used with this backend
   async init(settings) {
-    const db_url = settings.db_connect_url;
+    const db_url = settings.dbConnectUrl;
     console.log("Storage: Connect to :", db_url);
     this.pool = new Pool({connectionString: db_url});
     const createTable = `CREATE TABLE IF NOT EXISTS tl_settings( name TEXT PRIMARY KEY, value TEXT);`;

@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-core",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Core settings management functionality",
   "main": "settings_base.js",
   "keywords": ["application settings", "settings in DB", "refresh application settings"],

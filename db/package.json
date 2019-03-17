@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-db",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "DB abstraction for settings package",
   "main": "db.js",
   "keywords": ["application settings", "settings in DB", "refresh application settings"],

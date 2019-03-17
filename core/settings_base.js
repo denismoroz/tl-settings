@@ -23,21 +23,21 @@ function readonly(target, name, descriptor) {
 }
 
 
-// Decorator to provide a default_value for setting.
+// Decorator to provide a defaultValue for setting.
 // It saves default value to meta object and updates a setting description.
 // Settings value is searched first in DB and if it is missing default value is used.
 
-function default_value(_default_value) {
+function defaultValue(_default_value) {
   return function decorator(target, name, descriptor) {
-    target._addToMeta(name, {"default_value": _default_value});
+    target._addToMeta(name, {"defaultValue": _default_value});
 
     return {
       enumerable: true,
       configurable: true,
       get: function () {
-        const db_record = this.db_value[name]
+        const db_record = this.dbValue[name]
         const meta = this._getMeta(name)
-        let value = db_record ? db_record : meta.default_value
+        let value = db_record ? db_record : meta.defaultValue
         if (!meta.type) {
           meta.type = String
         }
@@ -55,7 +55,7 @@ const SETTINGS_KEY = Symbol.for("tl-settings-settings");
 class SettingsBase {
 
   constructor() {
-    this._db_value = {}
+    this._dbValue = {}
   }
 
   // Returns all settings field names defined in child object.
@@ -64,16 +64,16 @@ class SettingsBase {
   }
 
   // Returns all db values for all fields defined in child object
-  get db_value() {
-    return this._db_value
+  get dbValue() {
+    return this._dbValue
   }
 
   get description () {
     return this._description;
   }
 
-  get default_value () {
-    return this._default_value;
+  get defaultValue () {
+    return this._defaultValue;
   }
 
   get type() {
@@ -87,8 +87,8 @@ class SettingsBase {
 
   // Consult memory cache and return settings from the db.
   get(name) {
-    console.log("Get DBL value", name, this._db_value, this);
-    return this._db_value ? this._db_value[name] : null;
+    console.log("Get DBL value", name, this._dbValue, this);
+    return this._dbValue ? this._dbValue[name] : null;
   }
 
   // Save a new value for a setting.
@@ -117,7 +117,7 @@ class SettingsBase {
   async _setupDb(dbClass) {
     this._db = new dbClass;
     await this._db.init(this);
-    this._db_value = (await this._db.getAll()).reduce((acc, e) => {acc[e.name] = e.value; return acc;}, {});
+    this._dbValue = (await this._db.getAll()).reduce((acc, e) => {acc[e.name] = e.value; return acc;}, {});
   }
 
   _setupPubSub(pubSubClass) {
@@ -138,10 +138,10 @@ class SettingsBase {
     console.log("Refresh settings: ", name, value)
 
     if (value == null) {
-      delete this._db_value[name];
+      delete this._dbValue[name];
     }
     else {
-      this._db_value[name] = value;
+      this._dbValue[name] = value;
     }
   }
 
@@ -151,7 +151,7 @@ class SettingsBase {
     if (!this._meta) {
       this._meta = {}
       this._description = {}
-      this._default_value = {}
+      this._defaultValue = {}
       this._type = {}
       this._readonly = {}
     }
@@ -159,8 +159,8 @@ class SettingsBase {
     if ("description" in data) {
       this._description[name] = data["description"]
     }
-    if ("default_value" in data) {
-      this._default_value[name] = data["default_value"]
+    if ("defaultValue" in data) {
+      this._defaultValue[name] = data["defaultValue"]
     }
     if ("type" in data) {
       this._type[name] = data["type"]
@@ -200,4 +200,4 @@ function getSettingsInstance() {
   return global[SETTINGS_KEY];
 }
 
-module.exports = {type, description, default_value, readonly, SettingsBase, getSettingsInstance}
+module.exports = {type, description, default_value: defaultValue, readonly, SettingsBase, getSettingsInstance}

@@ -41,17 +41,17 @@
       else {
         settingsTable +=  `<input class='input-setting-value'  type='${setting.type}'  data='${setting.name}' value='${setting.value}'>`;
 
-        if (setting.db_value) {
+        if (setting.dbValue) {
           settingsTable +=  `<button class="btn-primary btn-delete" value='${setting.name}'>Delete</button>`;
         }
 
       }
-      settingsTable += "<br/>"  + '<span class="default_value">' + "Default: " + setting.default_value + '</span>'
+      settingsTable += "<br/>"  + '<span class="defaultValue">' + "Default: " + setting.defaultValue + '</span>'
 
       settingsTable += "</td>"
 
       settingsTable +=  "<td>" + setting.description + "</td>";
-      settingsTable +=  "<td>" + !!setting.db_value + "</td>";
+      settingsTable +=  "<td>" + !!setting.dbValue + "</td>";
 
       settingsTable += "</tr>"
     }

@@ -7,7 +7,7 @@ class PubSubRedis {
     this._settings = settings;
 
     this._sub = redis.createClient();
-    this._sub.subscribe(this._settings.settings_fields_update_channel);
+    this._sub.subscribe(this._settings.settingsFieldsUpdateChannel);
     this._sub.on('error', on_error);
     this._sub.on("message", on_message);
 
@@ -16,7 +16,7 @@ class PubSubRedis {
   }
 
   notify(field_name) {
-    this._pub.publish(this._settings.settings_fields_update_channel, field_name)
+    this._pub.publish(this._settings.settingsFieldsUpdateChannel, field_name)
   }
 }
 
