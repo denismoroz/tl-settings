@@ -8,11 +8,11 @@ class Settings extends SettingsBase {
   @default_value("postgres://toptal:toptal@localhost:5432/tl_settings")
   @description("db connect url")
   @readonly
-  db_connect_url;
+  dbConnectUrl;
 
   @default_value("settings_updates")
   @description("Redis channel for field updates")
-  settings_fields_update_channel;
+  settingsFieldsUpdateChannel;
 
   @default_value(process.env.PORT || 3000)
   @description("Port where express server will run")
@@ -22,11 +22,7 @@ class Settings extends SettingsBase {
 
   @default_value("Hello World!")
   @description("Hello message for starting application.")
-  hello_message;
-
-  @default_value("/settings")
-  @description("Setings UI url")
-  ui_settings_url;
+  helloMessage;
 }
 
 async function registerSettings() {

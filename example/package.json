@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-example",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Example how to use tl-settings",
   "main": "index.js",
   "scripts": {
@@ -10,19 +10,19 @@
   "license": "MIT",
   "homepage": "https://github.com/denismoroz/tl-settings",
   "dependencies": {
-    "@babel/preset-env": "^7.0.0-beta.44",
     "@babel/cli": "^7.0.0-beta.44",
+    "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
-    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.4",
     "@babel/plugin-proposal-decorators": "^7.3.0",
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.3.4",
     "@denis.moroz/tl-settings-core": "latest",
     "@denis.moroz/tl-settings-db": "latest",
     "@denis.moroz/tl-settings-pubsub": "latest",
     "@denis.moroz/tl-settings-ui": "latest",
-    "nodemon": "^1.18.9",
-    "express": "^4.16.3",
+    "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "body-parser": "^1.18.3"
+    "express": "^4.16.3",
+    "nodemon": "^1.18.10"
   }
 }
