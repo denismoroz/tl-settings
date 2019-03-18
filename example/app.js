@@ -17,7 +17,7 @@ app.use(function (error, req, res, next) {
 settings.registerSettings().then(() => {
 
   const settings_ui = require("@denis.moroz/tl-settings-ui")
-  settings_ui.register(app, "/settings")
+  settings_ui.register(app, "/admin/settings")
 
   const app_settings = settings.getSettingsInstance()
   const port = app_settings.port;

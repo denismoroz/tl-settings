@@ -5,3 +5,35 @@
 .input-setting-value {
     width: 80%;
 }
+th,
+td {
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+th.long,
+td.long {
+    width: 300px;
+    max-width: 300px;
+}
+
+td.long {
+    font-family: Consolas, Monaco, Courier, monospace
+}
+
+
+th.short,
+td.short {
+    width: 200px;
+    max-width: 200px;
+}
+
+th.tiny,
+td.tiny {
+    width: 100px;
+    max-width: 100px;
+    text-align: center;
+}
+#settings {
+    padding-top:1.5em;
+}
