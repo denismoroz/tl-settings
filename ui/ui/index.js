@@ -26,8 +26,8 @@ function settings_list() {
     const s = {
       name: field,
       value: settings[field],
-      db_value: settings.dbValue[field],
-      default_value: settings.defaultValue[field],
+      dbValue: settings.dbValue[field],
+      defaultValue: settings.defaultValue[field],
       description: settings.description[field],
       type: _pack_type(settings.type[field]),
       readonly: !!settings.readonly[field]

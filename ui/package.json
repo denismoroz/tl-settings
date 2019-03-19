@@ -1,6 +1,6 @@
 {
   "name": "@denis.moroz/tl-settings-ui",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "description": "Express UI interface to modify settings",
   "main": "index.js",
   "keywords": ["application settings", "settings in DB", "refresh application settings"],

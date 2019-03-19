@@ -19,7 +19,7 @@
     "@denis.moroz/tl-settings-core": "latest",
     "@denis.moroz/tl-settings-db": "latest",
     "@denis.moroz/tl-settings-pubsub": "latest",
-    "@denis.moroz/tl-settings-ui": "0.0.30",
+    "@denis.moroz/tl-settings-ui": "0.0.31",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
